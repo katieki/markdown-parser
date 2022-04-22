@@ -12,9 +12,9 @@ public class MarkdownParseTest {
 
     @Test
     public void getLinksTest() throws IOException {
-        Path fileName = Path.of("test-file.md");
+        Path fileName = Path.of("test-file_us.md");
         String content = Files.readString(fileName);
         List<String> result = List.of("https://something.com", "some-page.html");
-        assertEquals(result, content);
+        assertEquals(result, MarkdownParse.getLinks(content));
     }
 }
