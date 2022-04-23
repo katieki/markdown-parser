@@ -23,9 +23,13 @@ public class MarkdownParse {
             int closeBracket = markdown.indexOf("]", openBracket);
             int openParen = markdown.indexOf("(", closeBracket);
             int closeParen = markdown.indexOf(")", openParen);
-            if (markdown.indexOf("[", openBracket + 1) > closeParen || markdown.indexOf("[", openBracket + 1) < 0) {
+            if ((markdown.indexOf("[", openBracket + 1) > closeParen ||
+                    markdown.indexOf("[", openBracket + 1) < 0 &&
+                            openParen == closeBracket + 1)) {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
                 currentIndex = closeParen + 1;
+            } else if (markdown.indexOf("[", openBracket + 1) == -1) {
+                return toReturn;
             } else {
                 currentIndex = markdown.indexOf("[", openBracket + 1);
             }
@@ -39,6 +43,5 @@ public class MarkdownParse {
         String content = Files.readString(fileName);
         ArrayList<String> links = getLinks(content);
         System.out.println(links);
-        System.out.println("hi");
     }
 }
