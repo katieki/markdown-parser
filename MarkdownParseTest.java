@@ -36,30 +36,18 @@ public class MarkdownParseTest {
 
     @Test
     public void getLinksTest_4() throws IOException {
-        boolean errorThrown = false;
-        try {
-            Path fileName = Path.of("test-file4.md");
-            String content = Files.readString(fileName);
-            List<String> result = new ArrayList<String>();
-            System.out.println(MarkdownParse.getLinks(content));
-        } catch (Exception e) {
-            errorThrown = true;
-        }
-        assertTrue(errorThrown);
+        Path fileName = Path.of("test-file4.md");
+        String content = Files.readString(fileName);
+        List<String> result = new ArrayList<>();
+        assertEquals(result, MarkdownParse.getLinks(content));
     }
 
     @Test
     public void getLinksTest_5() throws IOException {
-        boolean errorThrown = false;
-        try {
-            Path fileName = Path.of("test-file5.md");
-            String content = Files.readString(fileName);
-            List<String> result = new ArrayList<String>();
-            System.out.println(MarkdownParse.getLinks(content));
-        } catch (Exception e) {
-            errorThrown = true;
-        }
-        assertTrue(errorThrown);
+        Path fileName = Path.of("test-file5.md");
+        String content = Files.readString(fileName);
+        List<String> result = new ArrayList<>();
+        assertEquals(result, MarkdownParse.getLinks(content));
     }
 
     @Test
@@ -72,29 +60,17 @@ public class MarkdownParseTest {
 
     @Test
     public void getLinksTest_7() throws IOException {
-        boolean errorThrown = false;
-        try {
-            Path fileName = Path.of("test-file7.md");
-            String content = Files.readString(fileName);
-            List<String> result = new ArrayList<String>();
-            System.out.println(MarkdownParse.getLinks(content));
-        } catch (Exception e) {
-            errorThrown = true;
-        }
-        assertTrue(errorThrown);
+        Path fileName = Path.of("test-file7.md");
+        String content = Files.readString(fileName);
+        List<String> result = new ArrayList<>();
+        assertEquals(result, MarkdownParse.getLinks(content));
     }
 
     @Test
     public void getLinksTest_8() throws IOException {
-        boolean errorThrown = false;
-        try {
-            Path fileName = Path.of("test-file8.md");
-            String content = Files.readString(fileName);
-            List<String> result = new ArrayList<String>();
-            System.out.println(MarkdownParse.getLinks(content));
-        } catch (Exception e) {
-            errorThrown = true;
-        }
-        assertTrue(errorThrown);
+        Path fileName = Path.of("test-file8.md");
+        String content = Files.readString(fileName);
+        List<String> result = new ArrayList<>();
+        assertEquals(result, MarkdownParse.getLinks(content));
     }
 }
