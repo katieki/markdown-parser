@@ -25,9 +25,9 @@ public class MarkdownParse {
             int openParen = markdown.indexOf("(", closeBracket);
             int closeParen = markdown.indexOf(")", openParen);
             // Check for incorrect syntax of brackets and parentheses
-            if ((markdown.indexOf("[", openBracket + 1) > closeParen ||
+            if (((markdown.indexOf("[", openBracket + 1) > closeParen ||
                     markdown.indexOf("[", openBracket + 1) < 0 &&
-                            openParen == closeBracket + 1)
+                            openParen == closeBracket + 1))
                     && closeBracket >= 0) {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
                 currentIndex = closeParen + 1;
