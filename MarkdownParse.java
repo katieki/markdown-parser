@@ -30,7 +30,8 @@ public class MarkdownParse {
                             openParen == closeBracket + 1)) {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
                 currentIndex = closeParen + 1;
-            } else if (markdown.indexOf("[", openBracket + 1) == -1) {
+            } else if (markdown.indexOf("[", openBracket + 1) == -1 ||
+                    closeParen < 0) {
                 return toReturn;
             } else {
                 currentIndex = markdown.indexOf("[", openBracket + 1);
