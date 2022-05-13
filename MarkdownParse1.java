@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class MarkdownParse2 {
+public class MarkdownParse1 {
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then take up to
@@ -13,23 +13,21 @@ public class MarkdownParse2 {
         int currentIndex = 0;
         while (currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            // System.out.format("%d\t%d\t%s\n", currentIndex, nextOpenBracket, toReturn);
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            int closeParen = markdown.indexOf(")", openParen);
-            if (nextOpenBracket == -1 || nextCloseBracket == -1 ||
-                    openParen == -1 || closeParen == -1) {
+            if (nextOpenBracket == -1) {
                 break;
             }
-            if (nextOpenBracket != 0 && markdown.charAt(nextOpenBracket - 1) == '!') {
-                currentIndex = currentIndex + 1;
-                continue;
+            if (nextOpenBracket > 0 && markdown.charAt(nextOpenBracket - 1) == '!') {
+                break;
             }
-            String link = markdown.substring(openParen + 1, closeParen);
-            if (link.indexOf(" ") == -1) {
-                toReturn.add(link);
+            int nextCloseBracket = markdown.indexOf("](", nextOpenBracket);
+            if (nextCloseBracket == -1) {
+                break;
             }
+            int closeParen = markdown.indexOf(")", nextCloseBracket);
+            toReturn.add(markdown.substring(nextCloseBracket + 2, closeParen));
             currentIndex = closeParen + 1;
+            // System.out.format("%d\t%d\t%d\t%d\n", currentIndex, nextOpenBracket,
+            // nextCloseBracket, closeParen);
         }
         return toReturn;
     }
