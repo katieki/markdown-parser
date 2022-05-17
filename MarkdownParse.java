@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class MarkdownParse {
     // add comment to test Makefile
-    //added chang
+    //added change
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (,
