@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public class MarkdownParse {
     // add comment to test Makefile
-    // added change new line
+    //added change
+    
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (,
@@ -29,7 +30,7 @@ public class MarkdownParse {
             if (((markdown.indexOf("[", openBracket + 1) > closeParen ||
                     markdown.indexOf("[", openBracket + 1) < 0 &&
                             openParen == closeBracket + 1))
-                    && closeBracket >= 0 && openBracket + 1 != closeBracket) {
+                    && closeBracket >= 0) {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
                 currentIndex = closeParen + 1;
             } else if (markdown.indexOf("[", openBracket + 1) == -1 ||
