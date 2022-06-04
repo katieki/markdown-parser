@@ -1,5 +1,3 @@
-//https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,8 +28,11 @@ public class MarkdownParse {
             if (((markdown.indexOf("[", openBracket + 1) > closeParen ||
                     markdown.indexOf("[", openBracket + 1) < 0 &&
                             openParen == closeBracket + 1))
-                    && closeBracket >= 0 && openBracket + 1 != closeBracket) {
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
+                    && closeBracket >= 0 && openBracket + 1 != closeBracket
+                    && openParen != -1 && closeParen != -1) {
+                String link = markdown.substring(openParen + 1, closeParen);
+                link = completeParen(link);
+                toReturn.add(link);
                 currentIndex = closeParen + 1;
             } else if (markdown.indexOf("[", openBracket + 1) == -1 ||
                     closeParen < 0) {
@@ -42,6 +43,22 @@ public class MarkdownParse {
         }
 
         return toReturn;
+    }
+
+    private static String completeParen(String str) {
+        int openParenCount = 0;
+        int closedParenCount = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '(') {
+                openParenCount++;
+            } else if (str.charAt(i) == ')') {
+                closedParenCount++;
+            }
+        }
+        for (int j = closedParenCount; j < openParenCount; j++) {
+            str += ")";
+        }
+        return str;
     }
 
     public static void main(String[] args) throws IOException {
